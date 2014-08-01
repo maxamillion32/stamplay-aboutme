@@ -1,0 +1,41 @@
+.row.profile-setting-row{
+	margin-bottom: 10px;
+	color: white;
+}
+
+.short-description-file{
+	line-height: 35px;
+}
+
+.short-description-text{
+	line-height: 55px;
+}
+
+.short-description-textarea{
+	line-height: 61px;
+}
+
+.short-description-picker{
+	line-height: 55px;
+}
+
+#name,#locations,#interests,#education,#bg_color1,#bg_color2,#header_color{
+	width: 100%;
+}
+
+#headline,#biography{
+	 min-width: 100%;
+	 min-height: 100px; 
+}
+
+.logout{
+	 cursor:pointer;	
+}
+
+.st-error-container{
+	line-height: 55px;
+}
+
+.row.profile-setting-row{
+	font-size: 15px;
+}

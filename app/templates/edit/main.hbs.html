@@ -1,0 +1,264 @@
+<!-- 
+{
+    bg: File
+    biopic: File
+    name:String
+    headline:String
+    biography: String 
+    location: [String]
+    interests: [String]
+    education: [String]
+    bg_color1: String
+    bg_color2: String
+    header_color: String
+}
+
+-->
+<div class="container" style="max-width: 1000px;">
+
+  <div class="page-header">
+    <h1> 
+    	{{#if cobj.biopic}}
+    	<a href="{{cobj.biopic}}" target="_blank"><img src="{{cobj.biopic}}" style="border-radius: 50%;width: 75px;height:75px;"></img></a>
+    	{{else}}
+    	<a href="{{user.profileImg}}" target="_blank"><img src="{{user.profileImg}}?type=large" style="border-radius: 50%;width: 75px;height:75px;"></img></a>
+    	{{/if}}
+
+  		About you
+  	</h1>
+    <p class="lead">Hey {{cobj.name}}, what about customizing your public profile? <small class="pull-right logout">Logout</small></p>
+  </div>
+
+  <!-- BACKGROUND IMAGE -->
+  <div class="row profile-setting-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 short-description-file">Background</div>
+    <div class="col-md-8">
+    	<input type="file" class="filestyle profile-info" data-buttonName="btn-primary" data-type="file" data-name="bg" id="bg">
+  	</div>
+  </div>
+
+  <!-- BIO PICTURE IMAGE -->
+  <div class="row profile-setting-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 short-description-file">Bio picture</div>
+    <div class="col-md-8">
+  		<input type="file" class="filestyle profile-info" data-buttonName="btn-primary" data-type="file" data-name="biopic" id="biopic">
+  	</div>
+  </div>
+
+  <!-- PROFILE ID -->
+  <div class="row profile-setting-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 short-description-text">Profile Id</div>
+    <div class="col-md-8">
+        <input 
+          type="text" 
+          value="{{cobj.profileId}}"
+          placeholder="A unique identifier that will be used to reach your profile page"
+          class="profile-info requiredField" 
+          data-type="text" 
+          data-name="profileId" 
+          id="profileId" />
+    </div>
+    <div class="col-md-1 st-error-container"></div>
+  </div>
+
+
+  <!-- NAME -->
+  <div class="row profile-setting-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 short-description-text">Name</div>
+    <div class="col-md-8">
+    		<input 
+          type="text" 
+          value="{{#if cobj.isNew}} {{user.displayName}} {{else}} {{cobj.name}} {{/if}}" 
+          class="profile-info requiredField" 
+          data-type="text" 
+          data-name="name" 
+          id="name" />
+  	</div>
+  </div>
+
+ <!-- BIRTHPLACE -->
+  <div class="row profile-setting-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 short-description-text">Birthplace</div>
+    <div class="col-md-8">
+        <input 
+          type="text"
+          placeholder="I am born here" 
+          value="{{cobj.birthplace}}" 
+          class="profile-info" 
+          data-type="text" 
+          data-name="birthplace" 
+          id="birthplace" />
+    </div>
+  </div>
+
+  <!-- HEADLINE -->
+  <div class="row profile-setting-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 short-description-textarea">Headline</div>
+    <div class="col-md-8">
+  		<textarea 
+        class="profile-info" 
+        data-type="text" 
+        data-name="headline" 
+        id="headline">{{#if cobj.isNew}}My beautiful headline{{else}}{{cobj.headline}}{{/if}}
+      </textarea>
+    </div>
+  </div>
+
+  <!-- BIOGRAPHY -->
+  <div class="row profile-setting-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 short-description-textarea">Biography</div>
+    <div class="col-md-8">
+    	<textarea 
+        class="profile-info" 
+        data-type="text" 
+        data-name="biography" 
+        id="biography">{{#if cobj.isNew}}Hi! I’m currently living in (City), where I work at (Work Place) doing (Job Title). When I’m not working I like to (Hobby), (Interest) and (Passion). Connect with me!{{else}}{{cobj.biography}}{{/if}}
+    	</textarea>
+    </div>
+  </div>
+
+  <!-- LOCATIONS -->
+  <div class="row profile-setting-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 short-description-text">Locations</div>
+    <div class="col-md-8">
+    	<input 
+        type="text"
+        value="{{cobj.locations}}"
+        placeholder="Places I've been (comma separated)"
+        class="profile-info" 
+        data-type="text" 
+        data-name="locations" 
+        id="locations">
+      </input>
+    </div>
+  </div>
+
+  <!-- INTERESTS -->
+  <div class="row profile-setting-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 short-description-text">Interests</div>
+    <div class="col-md-8">
+    	<input
+         type="text"
+         value="{{cobj.interests}}"
+         placeholder="What I really like to do (comma separated)" 
+         class="profile-info" 
+         data-type="text" 
+         data-name="interests" 
+         id="interests"> 
+    </div>
+  </div>
+
+  <!-- HOBBIES -->
+  <div class="row profile-setting-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 short-description-text">Hobbies</div>
+    <div class="col-md-8">
+      <input
+         type="text"
+         value="{{cobj.hobbies}}"
+         placeholder="During free time (comma separated)" 
+         class="profile-info" 
+         data-type="array_string" 
+         data-name="hobbies" 
+         id="hobbies"> 
+    </div>
+  </div>
+
+
+  <!-- EDUCATION -->
+  <div class="row profile-setting-row">
+        <div class="col-md-1"></div>
+
+    <div class="col-md-2 short-description-text">Education</div>
+    <div class="col-md-8">
+    	<input
+        type="text"
+        value="{{cobj.education}}" 
+        placeholder="Where I've studied (comma separated)"
+        class="profile-info" 
+        data-type="text" 
+        data-name="education" 
+        id="education"> 
+    </div>
+  </div>
+
+  <!-- BG COLOR 1 -->
+  <div class="row profile-setting-row">
+        <div class="col-md-1"></div>
+
+    <div class="col-md-2 short-description-picker">Background color 1</div>
+    <div class="col-md-8">
+  		<input 
+        type="text" 
+        value="{{cobj.bg_color1}}" 
+        class="colorpicker profile-info" 
+        data-type="text" 
+        data-name="bg_color1" 
+        id="bg_color1"/>
+    </div>
+  </div>
+
+  <!-- BG COLOR 2 -->
+  <div class="row profile-setting-row">
+        <div class="col-md-1"></div>
+
+    <div class="col-md-2 short-description-picker">Background color 2</div>
+    <div class="col-md-8">
+  		<input
+        type="text"
+        value="{{cobj.bg_color2}}" 
+        class="colorpicker profile-info"   
+        data-type="text" 
+        data-name="bg_color2" 
+        id="bg_color2" />
+    </div>
+  </div>
+
+  <!-- HEADER COLOR -->
+  <div class="row profile-setting-row">
+        <div class="col-md-1"></div>
+
+    <div class="col-md-2 short-description-picker">Header color</div>
+    <div class="col-md-8">
+  		<input 
+        type="text" 
+        value="{{cobj.header_color}}"
+        class="colorpicker profile-info"  
+        data-type="text" 
+        data-name="header_color" 
+        id="header_color" />
+  	</div>
+  </div>
+
+  <!-- HEADER COLOR -->
+  <div class="row profile-setting-row" style="margin-bottom:40px;">
+    <div class="col-md-12 text-center">
+    	<a href="#" class="btn btn-success" id="save-profile">Save profile</a>
+    	<a href="#" {{#if cobj.isNew}}disabled="disabled"{{/if}}class="btn btn-success" id="show-profile">Show profile</a>
+    </div>
+  </div>
+
+</div>
+
+
+<div id="call-successfull" class="alert alert-success text-center" role="alert" style="
+     display:none;
+     position:fixed;
+     width:240px;
+     height:75px;
+     z-index:150;
+     top:50%;
+     left:50%;
+     margin-left: -120px;
+     margin-top: -33px;">
+  <strong class="call-text"></strong>
+</div>

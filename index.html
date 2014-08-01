@@ -1,0 +1,143 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="{{assetsUrl}}/app/favicon.png">
+
+  <title>Stamplay | About.me demo</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{assetsUrl}}/app/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="{{assetsUrl}}/app/stylesheets/cover.css" rel="stylesheet">
+
+   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="{{assetsUrl}}/app/scripts/ie10-workaround.js"></script>
+
+</head>
+<body>
+
+  <style type="text/css">
+
+    /* Sticky footer styles
+    -------------------------------------------------- */
+
+    html,
+    body {
+      height: 100%;
+      /* The html and body elements cannot have any padding or margin. */
+    }
+
+    /* Wrapper for page content to push down footer */
+    #wrap {
+      min-height: 100%;
+      height: auto !important;
+      height: 100%;
+      /* Negative indent footer by it's height */
+      margin: 0 auto -60px;
+      background-image: url('{{assetsUrl}}/app/images/login-background.jpg');
+  /*
+     background-image: url('{{assetsUrl}}/app/images/login-stamplay.png');
+      background-repeat: no-repeat; 
+      background-size: cover;*/
+
+    }
+
+    /* Set the fixed height of the footer here */
+    #push,
+    #footer {
+      height: 60px;
+    }
+    #footer {
+      /*background-color: #333;*/
+    }
+
+    .st-head{        
+      margin-top: 40px;
+      margin-bottom: 130px;
+    }
+
+    .st-login{
+      background-color: #0077b3; color:white;
+    }
+
+    .st-login:hover{
+      background-color: #17597A;
+      color:white;
+    }
+
+    /* Custom page CSS
+    -------------------------------------------------- */
+    /* Not required for template or sticky footer method. */
+
+   
+    .container .credit {
+      margin: 20px 0;
+    }
+
+  </style>
+
+<div id="wrap">
+  <div class="container">
+
+    <div class="row st-head">
+      <div class="col-md-12">
+        <h3 class="masthead-brand">Stamplay About.me</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 pull-left">
+        <h1 class="cover-heading ">The Big Picture of You</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6" style="text-align: center;">
+        <p class="lead">Stamplay about.me helps you make a beautiful homepage that inspires people to connect with you.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p class="lead text-center">
+          <a href="/auth/v0/facebook/connect" class="btn btn-lg btn-default st-login"> Facebook login
+          </a>
+        </p>  
+      </div>
+    </div>
+
+  <!-- CONTAINER -->
+  </div>
+  <div id="push"></div>
+<!-- WRAP -->
+</div>
+
+<div id="footer">
+  <div class="container">
+    <p class="muted credit">Developed with by <a href="https://stamplay.com">Stamplay</a>.</p>
+  </div>
+</div>
+
+  
+<script>
+  var _APP_ID = "{{appId}}";
+  var _APP_DOMAIN = "{{baseUrl}}";
+</script>
+<script src="{{assetsUrl}}/app/bower_components/jquery/jquery.js"></script>
+<script src="{{assetsUrl}}/app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+  $.ajax({
+    url: '/api/user/v0/getStatus',
+    dataType: 'json',
+    context: this,
+    success: function (response) {
+      if (response.user) {
+        document.location.href= "/profile"
+      }
+    },
+    error: function () {}
+  });
+
+</script>
+</body>

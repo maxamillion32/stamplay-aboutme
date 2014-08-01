@@ -1,0 +1,262 @@
+<!-- Start of Social Section at bottom of page --> 
+<div id="socialsection">
+
+    <!-- You MUST add the URL's for your account at each social network in the code below to swap out the hash # tag -->
+    <div id="social-left">
+      <button type="button" class="btn btn-default btn-lg" {{#unless hasVoted}} id="compliment"{{/unless}} style="margin-top:10px;">
+        {{#if hasVoted}}
+          <span class="glyphicon glyphicon-star voted" id="compliment-star" ></span> You have already voted
+        {{else}}
+          <span class="glyphicon glyphicon-star" id="compliment-star"></span> Your profile looks great!
+        {{/if}}
+      </button>
+    </div>
+    
+    <div id="social-button"></div>
+    
+    <!-- You MUST change the URL definition in these links to share YOUR page - simply change the URL -->
+    <div id="social-right">
+        <a href="https://plus.google.com/share?url={{currentUrl}}" target="_blank"><i class="icon-gplus"></i></a>
+        <a href="http://pinterest.com/pin/create/button/?url={{currentUrl}}" target="_blank"><i class="icon-pinterest"></i></a>
+        <a href="http://www.facebook.com/share.php?u={{currentUrl}}"  target="_blank"><i class="icon-facebook"></i></a>
+        <a href="http://twitter.com/home?status={{currentUrl}}"  target="_blank"><i class="icon-twitter"></i></a>
+    </div>
+    
+</div><!-- End of Social Section at bottom of page -->     
+    
+        
+
+<!-- HEADER SECTION -->
+<header>
+
+    <!-- Start of Header Container - the content div that is a set width and centralized -->
+    <div class="header-container">
+        
+        <div id="menu" class="menu">
+            <div id="nav" class="nav">
+                <ul>
+                    {{#if user.isLogged}}
+                      <a href="#" class="edit"><li>Edit profile</li></a>
+                    {{else}}
+                      <li><a href="/">Login/Register</a></li>
+                    {{/if}}
+                    <li><a href="#About">About</a></li>
+                    <li><a href="#Contact">Contact Me</a></li>
+                    {{#if user.isLogged}}
+                      <li><a href="/auth/v0/logout">Logout</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+            <div id="menu-button"></div> 
+        </div>        
+
+    </div><!-- End of Header Container -->
+    
+</div><!-- End of Header -->
+
+</header>
+    
+    
+<!-- TOP SECTION -->
+
+<!-- Start of Video Element -->
+<div id="video_element">
+
+    <!-- Start of Main Title + Intro -->
+    <div class="huge-title">
+
+        <img 
+          src="{{#if profileCobj.biopic}} {{profileCobj.biopic}} {{else}} {{assetsUrl}}/default_portrait.jpg {{/if}}" 
+          alt="{{profileCobj.name}}" class="headshot wow tada"/>
+
+        <h1 class="wow bounceInDown" data-wow-offset="80" data-wow-duration="3s">{{profileCobj.name}}</h1>
+
+        <!-- Start of Owl Testimonial Carousel -->
+        <div class="testimonials owl-carousel">
+
+            {{#each profileCobj.interests}}
+                <div>
+                    <div class="button-box"><h4>{{this}}</h4></div>
+                </div>
+            {{/each}}
+
+        </div><!-- End of Owl Testimonial Carousel -->
+
+    </div><!-- End of Main Title + Intro -->
+
+    <!-- Start of Scroll Down Message and animation -->
+    <div id="godown" class="floating">
+
+        <p><a href="#About">Learn more about {{profileCobj.name}}</a></p>
+        <img id="down-img" src="{{assetsUrl}}/godown.png" alt="down"/>
+
+    </div><!-- End of Scroll Down Message and animation -->
+
+    <!-- Start of Shade - this is the css based gradient over the image for that cool effect -->
+    <div class="shade"></div><!-- End of Shade -->
+
+</div><!-- End of Video Element -->
+
+
+
+<!-- Start of Wrapper - the full width container -->
+<div class="wrapper">
+
+    <!-- Start of Container -->
+    <div class="container" style="margin:0px; padding:0px;">
+        
+        
+        
+        <!-- AT A GLANCE SECTION -->
+            
+        <!-- Start of Content - where the content be -->
+        <div class="content2" style="background-color:{{profileCobj.bg_color1}}">
+        
+            <!-- Start of Hero - The main top image like a phone etc -->
+            <div class="hero">
+                
+                <h3 style="color:{{profileCobj.header_color}}">At a glance</h3>
+                
+                <div class="one_third wow fadeInUp" data-wow-offset="120" data-wow-duration="1s">
+                  <h4 style="color:{{profileCobj.header_color}}">FULL NAME</h4>
+                  <h5>{{profileCobj.name}}</h5>
+                </div>
+                
+                <div class="one_third wow fadeInUp" data-wow-offset="120" data-wow-duration="1s" data-wow-delay="0.2s">
+                  <h4 style="color:{{profileCobj.header_color}}">BIRTHPLACE</h4>
+                  <h5>{{#if profileCobj.birthplace}} {{profileCobj.birthplace}} {{else}} No birthplace{{/if}}</h5>
+                </div>
+                
+                <div class="one_third_last wow fadeInUp" data-wow-offset="120" data-wow-duration="1s" data-wow-delay="0.3s">
+                  <h4 style="color:{{profileCobj.header_color}}">INTERESTS</h4>
+                  <h5 style="min-height: 29px!important;">{{#each profileCobj.interests}}{{this}} {{else}}No interests{{/each}}</h5>
+                </div>
+                
+                <div class="one_third wow fadeInUp" data-wow-offset="120" data-wow-duration="1s">
+                  <h4 style="color:{{profileCobj.header_color}}">LOCATIONS</h4>
+                  <h5>{{#each profileCobj.locations}}{{this}}{{else}}No locations{{/each}}</h5>
+                </div>
+                
+                <div class="one_third wow fadeInUp" data-wow-offset="120" data-wow-duration="1s" data-wow-delay="0.2s">
+                  <h4 style="color:{{profileCobj.header_color}}">EDUCATION</h4>
+                  <h5>{{#each profileCobj.education}}{{this}} {{else}}No education{{/each}}</h5>
+                </div>
+                
+                <div class="one_third_last wow fadeInUp" data-wow-offset="120" data-wow-duration="1s" data-wow-delay="0.3s">
+                  <h4 style="color:{{profileCobj.header_color}}">HOBBIES</h4>
+                  <h5>{{#each profileCobj.hobbies}}{{this}} {{else}}No hobbies{{/each}}</h5>
+               </div>
+                
+            </div><!-- End of Hero -->
+            
+        </div><!-- End of Content -->
+        
+        
+        
+        <!-- ABOUT SECTION -->    
+        
+        <!-- Start of White Container -->
+        <div class="whitecontainer" style="background: none repeat scroll 0 0 {{profileCobj.bg_color2}};">
+            
+            <!-- Start of Content -->
+            <div class="content" id="About">
+                    
+                <h2 class="border wow fadeInRightBig" data-wow-offset="80" data-wow-duration="2s">About me</h2>
+                <p>{{profileCobj.biography}}</p>
+
+                <blockquote class="wow fadeInLeftBig" data-wow-offset="80" data-wow-duration="3s">
+                    <p>{{profileCobj.headline}}</p>
+                </blockquote>
+
+                <h3 class="text-center"><span id="compliment-count">{{profileCobj.actions.votes.total}}</span> compliment{{#if pluralize}}s{{/if}}</h3>
+
+            </div><!-- End of Content -->
+            
+        </div><!-- End of White Container -->
+        
+        <!-- Start of Grey Container -->
+        <div class="greycontainer" style="background: none repeat scroll 0 0 {{profileCobj.bg_color1}};">
+
+            <!-- Start of Content -->
+            <div class="content centered" id="Contact">
+
+                <h2>Contact</h2>
+                <p>Send a message to {{profileCobj.name}}</p>
+
+                <!-- Begin Contact Form -->
+                <form id="contact_form" method="post" class="wow fadeInUpBig" data-wow-offset="80" data-wow-duration="2s">
+
+                    <p>
+                    <label>Name</label>
+                    <input type="text" name="name" id="name" value="" class="requiredField name" />
+                    </p>
+
+                    <p>
+                    <label>Email Address</label>				
+                    <input type="text" name="email" id="email" value=""  class="requiredField email" /> 
+                    </p>
+
+                    <p>
+                    <label>Your Message</label>
+                    <textarea name="message" id="message" rows="8" cols="30" class="requiredField message"></textarea>
+                    </p>
+
+                    <p>
+                      <input name="submitted" id="submitted" value="Submit" class="submit" type="submit" />
+                      <span id="success-contact" style="display:none;">Success</span>
+                      <span id="success-error" style="display:none">Error</span>
+                    </p>
+
+                </form>  <!--End Contact Form -->
+
+            </div><!-- End of Content -->
+
+        </div><!-- End of Grey Container -->
+        
+
+      
+        <!-- FOOTER SECTION -->
+
+        <!-- Start Of Footer -->    
+         <footer>
+
+            <!-- Start of Content -->
+            <div class="content">
+                <p><a href="mailto: support@stamplay.com">support@stamplay.com</a></p>
+                <p class="copyright">Copyright {{fullYear}} - Stamplay</p>
+
+            </div><!-- End of Content -->
+
+        </footer><!-- End Of Footer -->
+        
+	</div><!-- End of Container -->
+    
+</div><!-- End of Wrapper -->
+
+<div id="no-compliment" class="alert alert-danger alert-dismissible" role="alert" style="
+     display:none;
+     position:fixed;
+     width:480px;
+     height:75px;
+     z-index:150;
+     top:50%;
+     left:50%;
+     margin-left: -245px;
+     margin-top: -33px;">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>You can’t compliment yourself, but hey, your page looks great!.</strong>
+</div>
+
+<div id="please-login" class="alert alert-danger alert-dismissible" role="alert" style="
+display: none;
+position: fixed;
+width: 480px;
+height: 75px;
+z-index: 150;
+top: 50%;
+left: 50%;
+margin-left: -245px;
+margin-top: -33px;">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>Please login/register.</strong>
+</div>
