@@ -178,7 +178,6 @@ _______________________________
 
 ### Views
 
-Viene utilizzata la pagina profile.html come pagina per far partire Require ed il router di Backbone. Dato che portarsi dentro bootstrap dai bower components era impossibile per come è definito il css con i path relativi è stato portato dentro dalla cdn.
 
 ##### /index
 This is the home page of the service and it only uses a bit of Bootstrap and jQuery to check via the `getUserStatus` method if the user is logged and eventually redirect him to the edit page
