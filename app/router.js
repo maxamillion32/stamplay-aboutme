@@ -3,14 +3,6 @@
 define(['backbone', 'user', 'cobj'],
 	function (Backbone, User, CObj) {
 
-		function _manageHeader(section) {
-			if (!this.headerView) {
-				this.headerView = new HeaderView({
-					user: this.user,
-					page: section
-				});
-			}
-		}
 
 		function _resetViews() {
 			if (this.activesView) {
