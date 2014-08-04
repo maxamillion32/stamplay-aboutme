@@ -31,7 +31,7 @@ rebooted
 npm-debug.log
 .nodemonignore
 .sass-cache/
-public/bower_components
+app/bower_components
 
 # Others 			  #
 #######################
