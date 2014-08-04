@@ -264,14 +264,12 @@ define(['hbs!templates/profile/main', ],
 					return;
 				}
 
-				$.ajax({
-					url: '/api/cobject/v0/aboutpage/' + this.profileCobj.get('_id') + '/vote',
-					method: 'PUT',
+				this.profileCobj.vote({
 					success: function (response) {
 						$('#compliment').html('<span class="glyphicon glyphicon-star voted" id="compliment-star" ></span> You have already voted');
 						$('#compliment-count').html(response.actions.votes.total);
 					},
-					error: function (err) {
+					error: function () {
 
 					}
 				});
