@@ -28,10 +28,10 @@ Best of all, we used BackboneJS and Grunt to compile the assets to be compliant 
 
 HNclone is built around the following apis (components) of Stamplay
 
-* [Users](http://docs.stamplay.apiary.io/#user)
-* [Form](http://docs.stamplay.apiary.io/#form)
-* [Custom Objects](http://docs.stamplay.apiary.io/#customobject)
-* [Email](http://docs.stamplay.apiary.io/#email)
+* [Users](https://stamplay.com/docs#user)
+* [Form](https://stamplay.com/docs#form)
+* [Custom Objects](https://stamplay.com/docs#customobject)
+* [Email](https://stamplay.com/docs#email)
 * **Facebook Post**
 
 ## Requirements
@@ -171,7 +171,7 @@ _______________________________
 
 
 ### Models
-`User.js`: just an empty skeleton to mirror the server side model since we do not need it to do any specific job.
+`User.js`: just an empty skeleton  to mirror the server side model since we do not need it to do any specific job.
 
 `CObj.js`: this model reflects the **AboutPage** object we created with the editor. Has some setters for default attributes, the attribute `isNew` is setted after the first sign up. Today Custom Objects don't provide yet support for attributes that must be unique in a collection so the uniqueness of the `profileId` is handled on the client side.
 
