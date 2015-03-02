@@ -1,3 +1,6 @@
+#Credential file
+stamplay.json
+
 # Edits/Editors #
 #################
 ._*
@@ -35,7 +38,7 @@ app/bower_components
 
 # Others 			  #
 #######################
-dist/assets/
+dist/
 
 # Others 			  #
 #######################

@@ -53,18 +53,11 @@ define(['backbone', 'user', 'cobj'],
 			},
 
 			start: function () {
-				$.ajax({
-					url: '/api/user/v0/getStatus',
-					dataType: 'json',
-					context: this,
-					success: function (response) {
-						if (response.user) {
-							this.user = new User(response.user);
-							this.user.set('isLogged', true);
-						}
+				this.user.currentUser({
+					success: function () {
 						Backbone.history.start({
 							pushState: true,
-							root: "/profile"
+							root: "/profile.html"
 						});
 					},
 					error: function () {
@@ -80,26 +73,21 @@ define(['backbone', 'user', 'cobj'],
 					var _this = this;
 
 					require(['profile_view'], function (ProfileView) {
-						$.ajax({
-							method: 'GET',
-							url: '/api/cobject/v0/aboutpage?profileId=' + params.of,
-							context: _this,
-							success: function (response) {
-								if (response.data && response.data[0]) {
-									this.profileCobj = new CObj(response.data[0]);
-									var profileView = new ProfileView({
-										model: this.user,
-										profileCobj: this.profileCobj
-									});
-									this.activesView = profileView;
-								} else {
-									//No user matching that profile id, redirecting to landing page
-									document.location.href = '/';
-								}
-							},
-							error: function (err) {
-
+						var query = new Stamplay.Query('cobject', 'aboutpage');
+						query.equalTo('profileId', params.of).exec().then(function (response) {
+							if (response.data && response.data[0]) {
+								var profileCobj = new CObj(response.data[0]);
+								var profileView = new ProfileView({
+									model: _this.user,
+									profileCobj: profileCobj
+								});
+								_this.activesView = profileView;
+							} else {
+								//No user matching that profile id, redirecting to landing page
+								document.location.href = '/';
 							}
+						}).catch(function (err) {
+							console.log('ERROR ', err);
 						});
 					});
 
@@ -117,29 +105,23 @@ define(['backbone', 'user', 'cobj'],
 					var _this = this;
 					window.scroll(0, 0);
 					require(['edit_view'], function (EditView) {
-
-						$.ajax({
-							method: 'GET',
-							url: '/api/cobject/v0/aboutpage?user=' + _this.user.get('_id'),
-							context: _this,
-							success: function (response) {
-								if (response.data.length !== 0) {
-									_this.cobject = new CObj(response.data[0]);
-								} else {
-									_this.cobject = new CObj({
-										isNew: true
-									});
-								}
-								var editView = new EditView({
-									model: _this.user,
-									cobj: _this.cobject
+						var query = new Stamplay.Query('cobject', 'aboutpage');
+						query.equalTo('user', _this.user.get('_id')).exec().then(function (response) {
+							if (response.data.length !== 0) {
+								_this.cobject = new CObj(response.data[0]);
+							} else {
+								_this.cobject = new CObj({
+									isNew: true
 								});
-								_this.activesView = editView;
-							},
-							error: function (err) {},
-							complete: function () {}
+							}
+							var editView = new EditView({
+								model: _this.user,
+								cobj: _this.cobject
+							});
+							_this.activesView = editView;
+						}).catch(function (err) {
+							console.log('Error ', err);
 						});
-
 					});
 
 				} else {
