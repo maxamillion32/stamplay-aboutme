@@ -9,7 +9,7 @@ module.exports = {
       sourceMap: false
     },
     files: {
-      './dist/assets/libs.min.js': ['./dist/assets/libs.min.js']
+      './dist/js/libs.min.js': ['./dist/js/libs.min.js']
     }
   },
 
@@ -18,7 +18,13 @@ module.exports = {
       sourceMap: true
     },
     files: {
-      './dist/assets/app.min.js': ['./dist/assets/app.js']
+      './dist/js/app.min.js': ['./dist/js/app.js']
+    }
+  },
+
+  'requirejs': {
+    files: {
+      './dist/js/require.min.js': ['./app/bower_components/requirejs/require.js']
     }
   }
 

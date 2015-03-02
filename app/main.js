@@ -50,14 +50,14 @@ require.config({
 		/* ************************************************** */
 		/*                     VIEWS                          */
 		/* ************************************************** */
-		profile_view: 'views/profile/MainView',
-		edit_view: 'views/edit/MainView',
+		profile_view: './views/profile/MainView',
+		edit_view: './views/edit/MainView',
 
 		/* ************************************************** */
 		/*                     MODELS                         */
 		/* ************************************************** */
-		user: 'models/User',
-		cobj: 'models/CObj'
+		user: './models/User',
+		cobj: './models/CObj'
 	}
 });
 

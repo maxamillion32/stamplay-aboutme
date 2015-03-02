@@ -21,11 +21,11 @@
        include: [
          'handlebars',
          'profile_view',
-          'edit_view'
+         'edit_view'
       ],
        preserveLicenseComments: false,
        name: 'main',
-       out: './dist/assets/app.js'
+       out: './dist/js/app.js'
      }
    }
 

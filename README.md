@@ -12,7 +12,7 @@ Feel free to implement more cool features (see the last paragraph for ideas), co
 
 This is a demo of what you can achieve with [Stamplay](http://stamplay.com).
 
-It's somewhat a clone of [About.me](http://about.me). [View demo](https://3f78da.stamplay.com/)
+It's somewhat a clone of [About.me](http://about.me). [View demo](https://aboutme.stamplayapp.com/)
 
 Currently, in order to show how to leverage Stamplay APIs and keep it simple we used [BackboneJS](http://backbonejs.org) to implement the client side logic. The clone with let our users to:
 
@@ -32,7 +32,6 @@ HNclone is built around the following apis (components) of Stamplay
 * [Form](https://stamplay.com/docs#form)
 * [Custom Objects](https://stamplay.com/docs#customobject)
 * [Email](https://stamplay.com/docs#email)
-* **Facebook Post**
 
 ## Requirements
 
@@ -45,14 +44,14 @@ Other required services :
 
 ## Configuring the components
 
-After creating a new app on [Stamplay](https://editor.stamplay.com) let's start by picking the component we want to use in our app that are: **User**, **Email**, **Custom Objects**, **Form** and **Facebook Post**.
+After creating a new app on [Stamplay](https://editor.stamplay.com) let's start by picking the component we want to use in our app that are: **User**, **Email**, **Custom Objects** and **Form**.
 
 Lets see one-by-one how they are configured:
 
 ### User
 the app leverages Facebook Login to provide an easy login to its users. In order to activate yours you need to get an APPID and APPSecret on [Facebook Developer's portal](http://developers.facebook.com/apps), create an app and add Stamplay.com as authorized domain as you can see in the pic below. 
 
-![Facebook app settings](http://blog.stamplay.com/wp-content/uploads/2014/07/Schermata-2014-07-22-alle-17.43.24.png "Facebook app settings")
+![Facebook app settings](https://blog.stamplay.com/wp-content/uploads/2014/07/Schermata-2014-07-22-alle-17.43.24.png "Facebook app settings")
 
 now you have the data to configure Facebook Login on your app's user module. Go back on Stamplay, select the user component, add Facebook as signup service and then cut and paste the App ID and App Secret and click save.
 
@@ -70,12 +69,13 @@ For our About.me clone we use this module to represent the **AboutPage** that us
 * Name: `header_color`, Type: `string`, The header RGB color for the layout
 * Name: `interests`, Type: `array_string`, A list of user's interests
 * Name: `hobbies`, Type: `array_string`, A list of user's hobbies
-* Name: `educations`, Type: `array_string`, A list of user's educatin activities
+* Name: `education`, Type: `array_string`, A list of user's educatin activities
 * Name: `user`, Type: `user relation`, The reference to the owner of this page
 * Name: `birthplace`, Type: `string`, The birthplace
 * Name: `email`, Type: `string`, The email on which our user can be reached out 
+* Name: `profileId`, Type: `string`, The id of the profile
 
-After setting up this Stamplay will instantly expose Restful APIs for our newly created AboutPage resource on the following endpoint `https://APPID.stamplay.com/api/cobject/v0/aboutpage`
+After setting up this Stamplay will instantly expose Restful APIs for our newly created AboutPage resource on the following endpoint `https://APPID.stamplayapp.com/api/cobject/v0/aboutpage`
 
 ### Form 
 
@@ -87,15 +87,11 @@ Form component is used to create a contact form in the AboutPage of our users so
 * Name: `to`, Type: `text`, User's favorite quote
 
 
-![Form settings](http://blog.stamplay.com/wp-content/uploads/2014/08/Schermata-2014-08-04-alle-12.14.54.png)
+![Form settings](https://blog.stamplay.com/wp-content/uploads/2014/08/Schermata-2014-08-04-alle-12.14.54.png)
 
 
 ### Email
 This component doesn't need any setup, couldn't be easier than that ;)
-
-
-### Facebook Post
-This component publishes on the user's Facebook timeline a post and doesn't need any settings.
 
 -----------------------
 
@@ -104,7 +100,7 @@ This component publishes on the user's Facebook timeline a post and doesn't need
 
 Now let's add the tasks that will define the server side of our app. For our app we want that:
 
-### When a new user submits the contact form of an About page, send an email to the page owner 
+### On contact form submit, send an email to the page owner 
 
 Trigger : Form - On Submit
 
@@ -139,7 +135,7 @@ Action: Facebook Post - Send Email
 
 	message: "Come to see my new About Page :)"
 	picture: {{coinstance.bg}}
-	link: https://APPID.stamplay.com/profile/?of={{coinstance.profileId}}
+	link: https://APPID.stamplayapp.com/profile/?of={{coinstance.profileId}}
 	name: {{coinstance.name}}
 	caption: {{coinstance.headline}}
 	description: See how easy has been to clone About.me with Stamplay
@@ -182,11 +178,11 @@ _______________________________
 ##### /index
 This is the home page of the service and it only uses a bit of Bootstrap and jQuery to check via the `getUserStatus` method if the user is logged and eventually redirect him to the edit page
 
-##### /edit
+##### /profile
 
 use the User model while logged and user's about page custom object representation. Interactions in this view are handled by `edit/MainView.js`
 
-##### /profile
+##### /profile?id=profileId
 
 this is rendered by the view `profile/MainView.js`, it loads the profile leveraging the `profileId` added in the query string like this `/profile?of=giulianoiacobelli`
 
@@ -210,7 +206,7 @@ The former matches everything is written in the querystring to display the profi
 ### Building the frontend
 
 
-Stamplay hosts the client side of applications with a specific folder structure. To have your Backbone app converted to a Stamplay compatible we used [Grunt](http://gruntjs.com).
+Stamplay hosts the client side of applications with an open folder structure. For minifying the assets we used [Grunt](http://gruntjs.com).
 
 To build the app you need to have NPM and Bower installed and then run those two commands:
 
@@ -218,8 +214,7 @@ To build the app you need to have NPM and Bower installed and then run those two
 	grunt build
 
 
-Everything you need will be placed in the `dist` folder an you only need to add that files to your app online. If you don't want to upload that one at the time 
-you can use [Stamplay Sync](http://cdn.stamplay.com/stamplay-sync/stamplay-sync.zip).
+The minified js and css will be placed in the `dist` folder. 
 
 
 -----------------------
@@ -233,11 +228,16 @@ Or download it as a zip file
 	
 	https://github.com/Stamplay/stamplay-aboutme/archive/master.zip 
 
-Then you need to upload the frontend files in your app and you can do it in two ways:
+Then you need to upload the frontend files in your app by using the [CLI tool](https://github.com/Stamplay/stamplay-cli):
 
-* Copy/Upload them via the Layout section of your app on Stamplay editor
-* [Get Stamplay sync](http://cdn.stamplay.com/stamplay-sync/stamplay-sync.zip) and run **Stamplay Sync**, make it download the frontend assets of your app and then replace them with the ones you got from this repo. Stamplay Sync will upload everything for you on your app.
-
+```js
+cd your/path/to/stamplay-hackenews
+stamplay init
+/*
+ * You will need to insert your appId and your API key
+ */
+stamplay deploy
+```
 
 -----------------------
 # Next steps

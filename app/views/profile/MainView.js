@@ -6,7 +6,7 @@ define(['hbs!templates/profile/main', ],
 		var winWidth, socialHeight;
 
 		function isProd() {
-			return (document.location.href.indexOf('https://' + _APP_ID + '.stamplay.com') != -1) ? true : false;
+			return (document.location.href.indexOf('https://' + _APP_ID + '.stamplayapp.com') != -1) ? true : false;
 		}
 
 
@@ -57,20 +57,20 @@ define(['hbs!templates/profile/main', ],
 				speed: 800,
 				onInit: function (base) {
 
-					if (base.initHash !== '' && $(base.initHash).length > 0) {
-						window.location.hash = 'hash_' + base.initHash.substring(1);
-						window.scrollTo(0, 0);
+						if (base.initHash !== '' && $(base.initHash).length > 0) {
+							window.location.hash = 'hash_' + base.initHash.substring(1);
+							window.scrollTo(0, 0);
 
-						$(window).load(function () {
+							$(window).load(function () {
 
-							timer = setTimeout(function () {
-								$(base.scrollEl).animate({
-									scrollTop: $(base.initHash).offset().top
-								}, base.options.speed, base.options.easing);
-							}, 2000); // setTimeout
-						}); // window.load
-					} // if window.location.hash
-				} // onInit
+								timer = setTimeout(function () {
+									$(base.scrollEl).animate({
+										scrollTop: $(base.initHash).offset().top
+									}, base.options.speed, base.options.easing);
+								}, 2000); // setTimeout
+							}); // window.load
+						} // if window.location.hash
+					} // onInit
 			});
 
 			//Video Wallpaper Settings - alter the URL's to your converted videos		
@@ -255,12 +255,18 @@ define(['hbs!templates/profile/main', ],
 				e.stopPropagation();
 				if (!this.model.get('isLogged')) {
 					$('#please-login').fadeIn();
+					setTimeout(function () {
+						$('#please-login').fadeOut();
+					}, 2000);
 					return;
 				}
 
 				if (this.model.get('_id') === this.profileCobj.get('user')) {
 					//You can’t compliment yourself, but hey, nice shoes.
 					$('#no-compliment').fadeIn();
+					setTimeout(function () {
+						$('#no-compliment').fadeOut();
+					}, 2000);
 					return;
 				}
 
