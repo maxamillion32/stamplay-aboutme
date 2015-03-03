@@ -14,26 +14,11 @@ define(["backbone"], function (Backbone) {
 			header_color: '#ffffff'
 		},
 
-		validateProfileId: function (profileId, userId) {
-			var isValid = false;
-			$.ajax({
-				url: '/api/cobject/v0/aboutpage?profileId=' + profileId,
-				method: 'GET',
-				context: this,
-				async: false,
-				success: function (response) {
-					if (response.data.length > 0) {
-						response.data.forEach(function (cinstance) {
-							if (cinstance.user !== userId) {
-								isValid = true;
-								return;
-							}
-						}, this);
-					}
-				},
-				error: function () {}
-			});
-			return isValid;
+		initialize: function (options) {
+			this.stamplayCobject = new Stamplay.Cobject('aboutpage').Model;
+			if (options._id) {
+				this.stamplayCobject.set('_id', options._id);
+			}
 		},
 
 		saveOrUpdate: function (user, method, coinstanceData, options) {
@@ -61,24 +46,23 @@ define(["backbone"], function (Backbone) {
 						options.success();
 					}
 				},
-				error: function (err) {},
-				complete: function () {}
+				error: function (err) {
+					if (options.error) {
+						options.error(err);
+					}
+					console.log('error', err);
+				},
 			});
 		},
 
 		vote: function (options) {
-			$.ajax({
-				url: '/api/cobject/v0/aboutpage/' + this.get('_id') + '/vote',
-				method: 'PUT',
-				success: function (response) {
-					if (options.success) {
-						options.success(response);
-					}
-				},
-				error: function (err) {
-					if (options.error) {
-						options.error();
-					}
+			this.stamplayCobject.upVote().then(function () {
+				if (options.success) {
+					options.success();
+				}
+			}).catch(function (err) {
+				if (options.error) {
+					options.error();
 				}
 			});
 		}

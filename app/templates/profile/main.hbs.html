@@ -43,7 +43,7 @@
                     <li><a href="#About">About</a></li>
                     <li><a href="#Contact">Contact Me</a></li>
                     {{#if user.isLogged}}
-                      <li><a href="/auth/v0/logout">Logout</a></li>
+                      <li><a href="/auth/v0/logout">Logout</i></a></li>
                     {{/if}}
                 </ul>
             </div>
@@ -233,7 +233,7 @@
     
 </div><!-- End of Wrapper -->
 
-<div id="no-compliment" class="alert alert-danger alert-dismissible" role="alert" style="
+<div id="no-compliment" class="alert alert-danger text-center" role="alert" style="
      display:none;
      position:fixed;
      width:480px;
@@ -243,20 +243,18 @@
      left:50%;
      margin-left: -245px;
      margin-top: -33px;">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
   <strong>You can’t compliment yourself, but hey, your page looks great!.</strong>
 </div>
 
-<div id="please-login" class="alert alert-danger alert-dismissible" role="alert" style="
-display: none;
-position: fixed;
-width: 480px;
-height: 75px;
-z-index: 150;
-top: 50%;
-left: 50%;
-margin-left: -245px;
-margin-top: -33px;">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  <strong>Please login/register.</strong>
-</div>
+  <div id="please-login" class="alert alert-danger text-center" role="alert" style="
+    display: none;
+    position: fixed;
+    width: 480px;
+    height: 75px;
+    z-index: 150;
+    top: 50%;
+    left: 50%;
+    margin-left: -245px;
+    margin-top: -33px;">
+    <strong>Please login/register.</strong>
+  </div>

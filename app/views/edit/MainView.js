@@ -102,12 +102,12 @@ define(['hbs!templates/edit/main', 'async'],
 				}
 
 				var profileId = $('#profileId').val();
-				hasError = this.cobj.validateProfileId(profileId, this.model.get('_id'));
-				if (hasError) {
-					$('#profileId').parent().siblings('.st-error-container').html('<span class="error">Used</span>');
-					window.scroll(0, 0);
-					return;
-				}
+				// hasError = this.cobj.validateProfileId(profileId, this.model.get('_id'));
+				// if (hasError) {
+				// 	$('#profileId').parent().siblings('.st-error-container').html('<span class="error">Used</span>');
+				// 	window.scroll(0, 0);
+				// 	return;
+				// }
 
 				var fields = $('.profile-info');
 				var coinstance = new FormData();
@@ -129,8 +129,16 @@ define(['hbs!templates/edit/main', 'async'],
 							$('#call-successfull').fadeOut();
 						}, 1000);
 					},
-					error: function () {
+					error: function (err) {
+						if (err.status === 400) {
+							if (err.responseText.indexOf('already') != -1) {
+								$('#profileId').parent().siblings('.st-error-container').html('<span class="error">Used</span>');
+								window.scroll(0, 0);
+							} else {
 
+							}
+
+						}
 					}
 				});
 
@@ -139,7 +147,7 @@ define(['hbs!templates/edit/main', 'async'],
 
 			showProfile: function (e) {
 				e.preventDefault();
-				this.goTo('?of=' + this.cobj.get('profileId'));
+				document.location.href = "/profile.html?of=" + this.cobj.get('profileId');
 			},
 
 			logOut: function (e) {

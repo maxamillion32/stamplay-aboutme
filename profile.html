@@ -3,67 +3,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="{{assetsUrl}}/app/favicon.png">
+  <link rel="shortcut icon" href="/app/favicon.png">
 
   <title>Stamplay | About.me</title>
   <!-- Bootstrap core CSS -->
-  <link href="{{assetsUrl}}/app/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link href="{{assetsUrl}}/app/stylesheets/stamplay-colorpicker.css" rel="stylesheet">
-  <link href="{{assetsUrl}}/app/stylesheets/profile.css" rel="stylesheet">
-
-  <!-- PROFILE CSS ASSETS -->
-	<link href="{{assetsUrl}}/app/stylesheets/profile/main.css" rel="stylesheet" type="text/css" />
-
-	    
-	<!-- Important external stylesheets -->
-	<link rel="stylesheet" href="{{assetsUrl}}/app/stylesheets/profile/owl.carousel.css">
-	<link rel="stylesheet" href="{{assetsUrl}}/app/stylesheets/profile/owl.theme.css">
-	<link rel="stylesheet" href="{{assetsUrl}}/app/stylesheets/profile/fontello.css">
-	<link rel="stylesheet" href="{{assetsUrl}}/app/stylesheets/profile/jquery.fancybox8cbb.css?v=2.1.5" type="text/css" media="screen" /> 
-	<link rel="stylesheet" href="{{assetsUrl}}/app/stylesheets/profile/jquery.fs.wallpaper.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="{{assetsUrl}}/app/stylesheets/profile/animate.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="/app/stylesheets/profile/fontello.css">  
+  <!-- PROD MODE -->
+  <link href="/dist/css/lib.min.css" rel="stylesheet">
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 
-  <!-- END OF PROFILE ASSETS -->
-
-
 </head>
+
 <body>
 
-   <div id="container"></div> <!-- /container -->
+  <div id="container"></div> <!-- /container -->
 
-<a href="https://github.com/Stamplay/stamplay-aboutme"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:1000" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+  <a href="https://github.com/Stamplay/stamplay-aboutme">
+    <img style="position: absolute; top: 0; right: 0; border: 0; z-index:1000" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+  </a>
 
-
-  <!-- Bootstrap core JavaScript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
   <script>
-  	var _LIB_URL = "{{assetsUrl}}/app/";
+  	var _LIB_URL = "/app/";
     var _APP_ID = "{{appId}}";
     var _APP_DOMAIN = "{{baseUrl}}";
   </script>
-  <script src="{{assetsUrl}}/app/bower_components/jquery/jquery.js"></script>
-	<script data-main="{{assetsUrl}}/app/main.js" src="{{assetsUrl}}/app/bower_components/requirejs/require.js"></script>
-  <script src="{{assetsUrl}}/app/bower_components/jquery/jquery.js"></script>
-  <script src="{{assetsUrl}}/app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="{{assetsUrl}}/app/bower_components/bootstrap-filestyle/src/bootstrap-filestyle.js"></script>
-  <script src="{{assetsUrl}}/app/bower_components/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+  <script src="//drrjhlchpvi7e.cloudfront.net/libs/stamplay-js-sdk/0.0.5/stamplay.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <!-- DEV MODE -->
+  <!-- 
+  <script data-main="/app/main.js" src="/app/bower_components/requirejs/require.js"></script> 
+  -->
 
-  <!-- PROFILE SCRIPTS ASSETS -->
-
-	<script type="text/javascript" src="{{assetsUrl}}/app/scripts/profile/owl.carousel.js"></script>
-	<script type="text/javascript" src="{{assetsUrl}}/app/scripts/profile/jquery.fitvids.js"></script>
-	<script type="text/javascript" src="{{assetsUrl}}/app/scripts/profile/jquery.fancybox.pack8cbb.js?v=2.1.5"></script>
-	<script type="text/javascript" src="{{assetsUrl}}/app/scripts/profile/retina.js"></script>
-	<script type="text/javascript" src="{{assetsUrl}}/app/scripts/profile/jquery.scrollToTop.min.js"></script>
-	<script type="text/javascript" src="{{assetsUrl}}/app/scripts/profile/jquery.fs.wallpaper.js"></script>
-	<script type="text/javascript" src="{{assetsUrl}}/app/scripts/profile/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="{{assetsUrl}}/app/scripts/profile/jquery.plusanchor.js"></script>
-	<script type="text/javascript" src="{{assetsUrl}}/app/scripts/profile/jquery.knob.js"></script>
-	<!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
-	<script type="text/javascript" src="{{assetsUrl}}/app/scripts/profile/wow.min.js"></script>
-
-
-  <!-- END OF PROFILE SCRIPTS -->
+  <!-- PROD MODE -->
+  <script data-main="/dist/js/app.min.js" src="/dist/js/require.min.js"></script> 
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="/dist/js/libs.min.js"></script>
 </body>
