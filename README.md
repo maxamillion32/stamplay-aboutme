@@ -73,7 +73,7 @@ For our About.me clone we use this module to represent the **AboutPage** that us
 * Name: `user`, Type: `user relation`, The reference to the owner of this page
 * Name: `birthplace`, Type: `string`, The birthplace
 * Name: `email`, Type: `string`, The email on which our user can be reached out 
-* Name: `profileId`, Type: `string`, The id of the profile
+* Name: `profileId`, Type: `string`, The id of the profile, unique value
 
 After setting up this Stamplay will instantly expose Restful APIs for our newly created AboutPage resource on the following endpoint `https://APPID.stamplayapp.com/api/cobject/v0/aboutpage`
 
@@ -169,7 +169,7 @@ _______________________________
 ### Models
 `User.js`: just an empty skeleton  to mirror the server side model since we do not need it to do any specific job.
 
-`CObj.js`: this model reflects the **AboutPage** object we created with the editor. Has some setters for default attributes, the attribute `isNew` is setted after the first sign up. Today Custom Objects don't provide yet support for attributes that must be unique in a collection so the uniqueness of the `profileId` is handled on the client side.
+`CObj.js`: this model reflects the **AboutPage** object we created with the editor. Has some setters for default attributes, the attribute `isNew` is setted after the first sign up.
 
 
 ### Views
