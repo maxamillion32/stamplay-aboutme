@@ -21,7 +21,7 @@ Currently, in order to show how to leverage Stamplay APIs and keep it simple we 
 * Compliment pages of other users
 * Let visitors of connect with the owner of the about.me page via email
 
-Best of all, we used BackboneJS and Grunt to compile the assets to be compliant to the actual Stamplay apps' skeleton. Prepare to be amazed.
+Best of all, we used BackboneJS and Grunt to compile the assets. Prepare to be amazed.
 
 -----------------------
 # Anatomy
