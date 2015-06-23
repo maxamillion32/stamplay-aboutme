@@ -12,6 +12,7 @@
     "bootstrap-filestyle": "~1.1.0",
     "bootstrap-colorpicker": "*",
     "async": "~0.9.0",
-    "bootstrap-social": "~4.8.0"
+    "bootstrap-social": "~4.8.0",
+    "stamplay-sdk": "~1.1.0"
   }
 }

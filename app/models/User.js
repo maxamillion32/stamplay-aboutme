@@ -24,6 +24,10 @@ define(["backbone"], function (Backbone) {
 					options.error(err);
 				}
 			});
+		},
+
+		logout: function () {
+			return this.stamplayUser.logout();
 		}
 
 	});

@@ -152,7 +152,7 @@ define(['hbs!templates/edit/main', 'async'],
 
 			logOut: function (e) {
 				e.preventDefault();
-				document.location.href = '/auth/v0/logout';
+				this.model.logout();
 			},
 
 

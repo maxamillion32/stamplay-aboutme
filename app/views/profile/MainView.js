@@ -1,14 +1,9 @@
 /*global define, Backbone, $, document, _*/
-define(['hbs!templates/profile/main', ],
+define(['hbs!templates/profile/main'],
 	function (Template) {
 		'use strict';
 
 		var winWidth, socialHeight;
-
-		function isProd() {
-			return (document.location.href.indexOf('https://' + _APP_ID + '.stamplayapp.com') != -1) ? true : false;
-		}
-
 
 		function setWidth() {
 			winWidth = $(window).innerWidth(); //This may need to be width()	
@@ -74,15 +69,10 @@ define(['hbs!templates/profile/main', ],
 			});
 
 			//Video Wallpaper Settings - alter the URL's to your converted videos		
-			if (isProd()) {
-				$("#video_element").wallpaper({
-					source: this.profileCobj.get('bg') || _LIB_URL + 'background2.jpg'
-				});
-			} else {
-				$("#video_element").wallpaper({
-					source: this.profileCobj.get('bg') || _LIB_URL + 'images/profile/background2.jpg'
-				});
-			}
+
+			$("#video_element").wallpaper({
+				source: this.profileCobj.get('bg') || _LIB_URL + '/images/profile/background2.jpg'
+			});
 
 			//fancybox
 			$(".fancybox").fancybox();
@@ -122,9 +112,8 @@ define(['hbs!templates/profile/main', ],
 
 		function prodUrls() {
 			if (!this.profileCobj.get('biopic')) {
-				$('.huge-title img').attr('src', _LIB_URL + 'default_portrait.jpg');
+				$('.huge-title img').attr('src', _LIB_URL + 'images/profile/default_portrait.jpg');
 			}
-			$('#down-img').attr('src', _LIB_URL + 'godown.png');
 		}
 
 		var mainView = Backbone.View.extend({
@@ -137,6 +126,7 @@ define(['hbs!templates/profile/main', ],
 				'click #socialsection': 'showSocial',
 				'click .menu': 'navigate',
 				'click .edit': 'toEdit',
+				'click #logout': 'logout'
 			},
 
 			initialize: function (options) {
@@ -169,9 +159,7 @@ define(['hbs!templates/profile/main', ],
 						pluralize: pluralize
 					}));
 
-					if (isProd()) {
-						prodUrls.call(this);
-					}
+					prodUrls.call(this);
 
 				} else {
 					//Handle error the cobj is not found
@@ -218,35 +206,26 @@ define(['hbs!templates/profile/main', ],
 					var name = $('#name').val();
 					var email = $('#email').val();
 					var message = $('#message').val();
-					var content = {
-						name: name,
-						email: email,
-						message: message,
-						to: this.profileCobj.get('email'),
-						userId: this.model.get('_id')
-					};
-					$.ajax({
-						url: '/api/form/v0/forms/contact-form/entries',
-						method: 'POST',
-						data: content,
-						success: function (response) {
-							$('form#contact_form').slideUp("fast", function () {
-								$('form#contact_form').before('<p class="success">Thank you! Your email was successfully sent.</p>');
-							});
-						},
-						error: function (err) {
-							$('#error-contact').show();
-							setTimeout(function () {
-								$('#error-contact').fadeOut();
-							}, 1000);
-						},
-						complete: function () {
-							$('#name').val('');
-							$('#email').val('');
-							$('#message').val('');
-						}
-					});
 
+					var entry = new Stamplay.Cobject('contactform').Model;
+					entry.set('name', name);
+					entry.set('email', email);
+					entry.set('message', message);
+					entry.set('to', this.profileCobj.get('email'));
+					entry.save().then(function () {
+						$('form#contact_form').slideUp("fast", function () {
+							$('form#contact_form').before('<p class="success">Thank you! Your email was successfully sent.</p>');
+						});
+					}).catch(function () {
+						$('#error-contact').show();
+						setTimeout(function () {
+							$('#error-contact').fadeOut();
+						}, 1000);
+					}).then(function () {
+						$('#name').val('');
+						$('#email').val('');
+						$('#message').val('');
+					});
 				}
 			},
 
@@ -302,6 +281,11 @@ define(['hbs!templates/profile/main', ],
 			toEdit: function (e) {
 				e.preventDefault();
 				this.goTo('/');
+			},
+
+			logout: function (e) {
+				e.preventDefault();
+				this.model.logout();
 			},
 
 			clear: function () {

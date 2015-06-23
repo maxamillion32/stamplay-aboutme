@@ -75,8 +75,8 @@ define(['backbone', 'user', 'cobj'],
 					require(['profile_view'], function (ProfileView) {
 						var query = new Stamplay.Query('cobject', 'aboutpage');
 						query.equalTo('profileId', params.of).exec().then(function (response) {
-							if (response.data && response.data[0]) {
-								var profileCobj = new CObj(response.data[0]);
+							if (response && response[0]) {
+								var profileCobj = new CObj(response[0]);
 								var profileView = new ProfileView({
 									model: _this.user,
 									profileCobj: profileCobj
@@ -107,8 +107,8 @@ define(['backbone', 'user', 'cobj'],
 					require(['edit_view'], function (EditView) {
 						var query = new Stamplay.Query('cobject', 'aboutpage');
 						query.equalTo('user', _this.user.get('_id')).exec().then(function (response) {
-							if (response.data.length !== 0) {
-								_this.cobject = new CObj(response.data[0]);
+							if (response.length !== 0) {
+								_this.cobject = new CObj(response[0]);
 							} else {
 								_this.cobject = new CObj({
 									isNew: true

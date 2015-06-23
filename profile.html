@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="/app/stylesheets/profile/fontello.css">  
   <!-- PROD MODE -->
   <link href="/dist/css/lib.min.css" rel="stylesheet">
-	<link href='https://fonts.googleapis.com/css?family=Raleway:400,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -25,19 +24,20 @@
 
   <script>
   	var _LIB_URL = "/app/";
-    var _APP_ID = "{{appId}}";
-    var _APP_DOMAIN = "{{baseUrl}}";
   </script>
-  <script src="//drrjhlchpvi7e.cloudfront.net/libs/stamplay-js-sdk/0.0.5/stamplay.min.js"></script>
+  <script src="./app/bower_components/stamplay-sdk/dist/stamplay.js"></script>
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-  <!-- DEV MODE -->
-  <!-- 
-  <script data-main="/app/main.js" src="/app/bower_components/requirejs/require.js"></script> 
+  <!-- DEV MODE 
+    <script data-main="/app/main.js" src="/app/bower_components/requirejs/require.js"></script> 
   -->
 
-  <!-- PROD MODE -->
+
+  <!-- PROD MODE    -->
   <script data-main="/dist/js/app.min.js" src="/dist/js/require.min.js"></script> 
+
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+ <!-- 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+-->
   <script src="/dist/js/libs.min.js"></script>
 </body>

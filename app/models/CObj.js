@@ -22,7 +22,7 @@ define(["backbone"], function (Backbone) {
 		},
 
 		saveOrUpdate: function (user, method, coinstanceData, options) {
-			var url = '/api/cobject/v0/aboutpage';
+			var url = '/api/cobject/v1/aboutpage';
 			if (method === 'PATCH') {
 				url = url + '/' + this.get('_id');
 			} else {

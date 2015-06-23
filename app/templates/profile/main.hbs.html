@@ -43,7 +43,7 @@
                     <li><a href="#About">About</a></li>
                     <li><a href="#Contact">Contact Me</a></li>
                     {{#if user.isLogged}}
-                      <li><a href="/auth/v0/logout">Logout</i></a></li>
+                      <li><a href="#" id="logout">Logout</i></a></li>
                     {{/if}}
                 </ul>
             </div>
@@ -88,7 +88,7 @@
     <div id="godown" class="floating">
 
         <p><a href="#About">Learn more about {{profileCobj.name}}</a></p>
-        <img id="down-img" src="{{assetsUrl}}/godown.png" alt="down"/>
+        <img id="down-img" src="app/images/profile/godown.png" alt="down"/>
 
     </div><!-- End of Scroll Down Message and animation -->
 
