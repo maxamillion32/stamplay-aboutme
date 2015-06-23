@@ -114,6 +114,7 @@ define(['hbs!templates/profile/main'],
 			if (!this.profileCobj.get('biopic')) {
 				$('.huge-title img').attr('src', _LIB_URL + 'images/profile/default_portrait.jpg');
 			}
+
 		}
 
 		var mainView = Backbone.View.extend({

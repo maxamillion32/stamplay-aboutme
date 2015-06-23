@@ -5,12 +5,12 @@ stamplay-aboutme
 
 You can test it anytime simply creating a new project on Stamplay and uploading all the frontend assets with our client or our browser based code editor. 
 
-Feel free to implement more cool features (see the last paragraph for ideas), contribute to this repo or clone it to use it by your own scopes. For any question drop an email to [giuliano.iacobelli@stamplay.com](mailto:giuliano.iacobelli@stamplay.com)
+Feel free to implement more cool features (see the last paragraph for ideas), contribute to this repo or clone it to use it by your own scopes. For any question drop an email to [support@stamplay.com](mailto:support@stamplay.com)
 
 -----------------------
 ## About.me clone
 
-This is a demo of what you can achieve with [Stamplay](http://stamplay.com).
+This is a demo of what you can achieve with [Stamplay](https://stamplay.com).
 
 It's somewhat a clone of [About.me](http://about.me). [View demo](https://aboutme.stamplayapp.com/)
 
@@ -28,10 +28,9 @@ Best of all, we used BackboneJS and Grunt to compile the assets. Prepare to be a
 
 HNclone is built around the following apis (components) of Stamplay
 
-* [Users](https://stamplay.com/docs#user)
-* [Form](https://stamplay.com/docs#form)
-* [Custom Objects](https://stamplay.com/docs#customobject)
-* [Email](https://stamplay.com/docs#email)
+* [Users](https://stamplay.com/docs/rest-api#user)
+* [Custom Objects](https://stamplay.com/docs/rest-api#custom-object-api)
+* [Email](https://stamplay.com/docs/rest-api#email)
 
 ## Requirements
 
@@ -44,18 +43,21 @@ Other required services :
 
 ## Configuring the components
 
-After creating a new app on [Stamplay](https://editor.stamplay.com) let's start by picking the component we want to use in our app that are: **User**, **Email**, **Custom Objects** and **Form**.
+After creating a new app on [Stamplay](https://editor.stamplay.com) let's start by picking the component we want to use in our app that are: **User**, **Email**, **Custom Objects**.
 
 Lets see one-by-one how they are configured:
 
 ### User
-the app leverages Facebook Login to provide an easy login to its users. In order to activate yours you need to get an APPID and APPSecret on [Facebook Developer's portal](http://developers.facebook.com/apps), create an app and add Stamplay.com as authorized domain as you can see in the pic below. 
+The app leverages Facebook Login to provide an easy login to its users. In order to activate yours you need to get an APPID and APPSecret on [Facebook Developer's portal](http://developers.facebook.com/apps), create an app and add Stamplay.com as authorized domain as you can see in the pic below. 
 
 ![Facebook app settings](https://blog.stamplay.com/wp-content/uploads/2014/07/Schermata-2014-07-22-alle-17.43.24.png "Facebook app settings")
 
-now you have the data to configure Facebook Login on your app's user module. Go back on Stamplay, select the user component, add Facebook as signup service and then cut and paste the App ID and App Secret and click save.
+Now you have the data to configure Facebook Login on your app's user module. Go back on Stamplay, select the user component, add Facebook as signup service and then cut and paste the App ID and App Secret and click save.
 
 ### Custom Object
+
+#### aboutpage
+
 For our About.me clone we use this module to represent the **AboutPage** that users can create and then share. The **AboutPage** object will contain all the informations so here we need to model those as attributes:
 
 * Name: `bg`, Type: `file`, The background image of the page
@@ -77,14 +79,14 @@ For our About.me clone we use this module to represent the **AboutPage** that us
 
 After setting up this Stamplay will instantly expose Restful APIs for our newly created AboutPage resource on the following endpoint `https://APPID.stamplayapp.com/api/cobject/v0/aboutpage`
 
-### Form 
+### contactform
 
-Form component is used to create a contact form in the AboutPage of our users so that visitors will be able to write to the owner of the page without knowing the email address. The form will have 4 fields:
+To represent a form we are going to create a ```contactform``` object so that visitors will be able to write to the owner of the page without knowing the email address.
 
-* Name: `email`, Type: `text`, The sender's email address
-* Name: `name`, Type: `text`, The sender's email name
-* Name: `message`, Type: `text`, The message
-* Name: `to`, Type: `text`, User's favorite quote
+* Name: `email`, Type: `string`, The sender's email address
+* Name: `name`, Type: `string`, The sender's email name
+* Name: `message`, Type: `string`, The message
+* Name: `to`, Type: `string`, User's favorite quote
 
 
 ![Form settings](https://blog.stamplay.com/wp-content/uploads/2014/08/Schermata-2014-08-04-alle-12.14.54.png)
@@ -112,13 +114,11 @@ Action: Email - Send Email
 
 **Send Email configuration**
 
-	to: {{entry.data.to}} //The recipient address taken from the form entry 
-	from: {{user.email}} //Will be replaced with logged user's email
-	name: {{entry.data.name}} //The sender's name taken from the form entry 
+	to: {{coinstance.to}} //The recipient address taken from the form entry 
+	from: {{coinstance.email}} //Will be replaced with logged user's email
+	name: {{coinstance.name}} //The sender's name taken from the form entry 
 	Subject: "New contact from your AboutPage!"
-	Body: {{entry.data.message}} //The sender's message taken from the form entry 
-
-
+	Body: {{coinstance.message}} //The sender's message taken from the form entry
 
 ### When a user creates his AboutPage, share on his Facebook Timeline
 
