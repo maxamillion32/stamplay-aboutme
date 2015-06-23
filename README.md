@@ -89,7 +89,7 @@ To represent a form we are going to create a ```contactform``` object so that vi
 * Name: `to`, Type: `string`, User's favorite quote
 
 
-![Form settings](https://blog.stamplay.com/wp-content/uploads/2014/08/Schermata-2014-08-04-alle-12.14.54.png)
+![Form settings](https://blog.stamplay.com/wp-content/uploads/2014/07/Schermata-2015-06-23-alle-16.23.08.png)
 
 
 ### Email
@@ -247,6 +247,6 @@ Here are a few ideas for further improvement :
 * Add the "users who complimented you" as About.me does
 * _Your idea here… ?_
 
-Again, for any questions drop an email to [giuliano.iacobelli@stamplay.com](mailto:giuliano.iacobelli@stamplay.com) :)
+Again, for any questions drop an email to [support@stamplay.com](mailto:support@stamplay.com) :)
 
 Ciao!
