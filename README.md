@@ -102,13 +102,13 @@ Now let's add the tasks that will define the server side of our app. For our app
 
 ### On contact form submit, send an email to the page owner 
 
-Trigger : Form - On Submit
+Trigger : Custom Object - On Create
 
 Action: Email - Send Email
 
-**Form submit configuration**
+**Custom object On Create configuration**
 
-	Form: contact form
+	Custom Object: contact
 
 **Send Email configuration**
 
@@ -129,7 +129,7 @@ Action: Facebook Post - Send Email
 
 **Custom Object submit configuration**
 
-	Form: contact aboutpage
+	Custom Object: contact aboutpage
 
 **Facebook Post configuration**
 
