@@ -1,7 +1,7 @@
 stamplay-aboutme
 ===================
 
-**This project is built on the [Stamplay](https://stamplay.com) platform with [BackboneJS](http://backbonejs.org/) to show you how to build a take-out food ordering application, like [About.me](https://about.me/).**
+**This project is built on the [Stamplay](https://stamplay.com) platform with [BackboneJS](http://backbonejs.org/) to show you how to build a community driven landing page site, like [About.me](https://about.me/).**
 
 *Owning your own personal homepage can have many benefits; from using it to promote your personal brand or work, as a hub to your social accounts, and to display on your business card. About.me is one of the most widely used personal homepage sites.*
 
